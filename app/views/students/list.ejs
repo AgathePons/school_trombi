@@ -1,0 +1,19 @@
+<%- include('../partials/header') %>
+<h1>Liste des étudiants de la promo : ...</h1>
+<ul class="cards">
+  <% for (const student of studentsOfPromo) { %>
+    <li class="card">
+      <a href="#">
+        <figure>
+            <img src="<%= student.profile_picture_url %>" alt="Profil picture of <%= student.first_name %>">
+            <figcaption><%= student.first_name %> <%= student.last_name %></figcaption>
+        </figure>
+    </a>
+    </li>
+  <% } %>
+</ul>
+</body>
+
+</html>
+
+<%- include('../partials/footer') %>
