@@ -3,7 +3,9 @@
     <ul>
         <% for(const promo of promos) { %>
             <li>
+                <a href="/promos/<%= promo.id %>">
                 <%= promo.name %>
+                </a>
             </li>
         <% } %>
     </ul>

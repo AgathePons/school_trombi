@@ -9,6 +9,6 @@ router.get('/', mainControllers.home);
 
 router.get('/promos', promoController.list);
 
-router.get('/promos/:promo', promoController.details);
+router.get('/promos/:id', promoController.details);
 
 module.exports = router;
