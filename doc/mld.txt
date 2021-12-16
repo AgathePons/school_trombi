@@ -1,0 +1,2 @@
+Promo ( name, github_organization )
+Student ( first_name, last_name, github_username, profil_picture_url, name, #promo )
