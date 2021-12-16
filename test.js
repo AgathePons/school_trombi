@@ -13,10 +13,14 @@ const client = new Client('postgresql://etudiant:js4life@pg.oclock.lan:5432/trom
 
 client.connect();
 
-const resultats = client.query('SELECT * FROM "promo" LIMIT 10', (err, resultats) => {
+const resultats = client.query('SELECT * FROM "promo" LIMIT 3', (err, resultats) => {
   if(err) {
     return console.error('Oupsiii', err);
   }
-  console.log(resultats.rows);
+  //console.log(resultats.rows);
 
 });
+
+const check = () => {
+  console.log(resultats);
+};
