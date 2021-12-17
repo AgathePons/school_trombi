@@ -1,3 +1,5 @@
+## Challenge 02
+
 **Needed requests**
 - All promos sorted alphabetically by name
 
@@ -51,3 +53,15 @@ const promosTesteuh = client
 
 console.log('LIST1:', promosTest);
 ```
+
+## Challenge 03
+
+**Needed requests**
+
+`INSERT INTO student ( first_name, last_name, prmo_id ) VALUES ( 'Chuck', 'Norris', 5 );`
+
+`INSERT INTO promo ( name ) VALUES ( 'César' );`
+
+`UPDATE promo SET name = 'Cleo' WHERE id = 5;`
+
+`DELETE FROM promo WHERE id = 123;`
