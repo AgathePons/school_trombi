@@ -20,7 +20,3 @@ const resultats = client.query('SELECT * FROM "promo" LIMIT 3', (err, resultats)
   //console.log(resultats.rows);
 
 });
-
-const check = () => {
-  console.log(resultats);
-};

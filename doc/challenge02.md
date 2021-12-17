@@ -12,9 +12,9 @@
   
 `SELECT * FROM "student" WHERE "promo_id"=135;`
 
-- All students where first name or last name is like "max"
+- All students where first name or last name is like "max" (uppercase or lowercase)
 
-`SELECT * FROM "student" WHERE "first_name" LIKE '%max%' OR "last_name" LIKE '%max%';`
+`SELECT * FROM "student" WHERE "first_name" ILIKE '%max%' OR "last_name" ILIKE '%max%';`
 
 --------------
 

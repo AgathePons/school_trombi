@@ -1,5 +1,5 @@
 <%- include('../partials/header') %>
-<h1>Liste des étudiants de la promo : <%= promo %></h1>
+<h1>Liste des étudiants de la promo : <%= promo.name %></h1>
 <ul class="cards">
   <% for (const student of students) { %>
     <li class="card">
