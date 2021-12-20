@@ -1,9 +1,4 @@
-// définition du client pg pour se co à la bdd
-const {
-  Client
-} = require('pg');
-const client = new Client(process.env.PGURL);
-client.connect();
+const client = require('../dbClient');
 
 module.exports = {
   list: async (req, res) => {

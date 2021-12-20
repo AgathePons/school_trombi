@@ -1,9 +1,4 @@
-// définition du client pg pour se co à la bdd
-const {
-  Client
-} = require('pg');
-const client = new Client(process.env.PGURL);
-client.connect();
+const client = require('../dbClient');
 
 module.exports = {
   list: async (req, res, next) => {
@@ -11,19 +6,15 @@ module.exports = {
     const queryPromo = `SELECT * FROM "promo" WHERE "id"=${id}`;
     const queryStudents = `SELECT * FROM "student" WHERE "promo_id"=${id}`;
     try {
-      const resultatPromo = await client.query(queryPromo);
-      const promo = resultatPromo.rows[0];
+      //const resultatPromo = await client.query(queryPromo);
+      const promo = (await client.query(queryPromo)).rows[0];
       console.log(promo);
       if (promo) {
-        try {
-          const resultatStudents = await client.query(queryStudents);
-          res.render('students/list', {
-            promo,
-            students: resultatStudents.rows
-          });
-        } catch(error) {
-          console.error('hmm, an error occured:', error);
-        }
+        const students = (await client.query(queryStudents)).rows;
+        res.render('students/list', {
+          promo,
+          students
+        });
       } else {
         next();
       }
@@ -32,4 +23,26 @@ module.exports = {
     }
 
   },
+  details: async (req, res, next) => {
+    const id = req.params.id;
+    const queryStudent = `SELECT * FROM "student" WHERE "id"=${id}`;
+    
+    try {
+      const resultat = await client.query(queryStudent);
+      const student = resultat.rows[0];
+      if (student) {
+        const queryPromo = `SELECT "name" FROM "promo" WHERE "id"=${student.promo_id}`;
+        const promo = (await client.query(queryPromo)).rows[0];
+        res.render('students/details', {
+          student,
+          promo
+        });
+      } else {
+        console.log('raté 404');
+        next();
+      }
+    } catch(error) {
+      console.error('hmm, an error occured:', error);
+    }
+  }
 };

@@ -58,10 +58,12 @@ console.log('LIST1:', promosTest);
 
 **Needed requests**
 
-`INSERT INTO student ( first_name, last_name, prmo_id ) VALUES ( 'Chuck', 'Norris', 5 );`
+`INSERT INTO student ( "first_name", "last_name", "promo_id" ) VALUES ( 'Chuck', 'Norris', 5 );`
 
-`INSERT INTO promo ( name ) VALUES ( 'César' );`
+`INSERT INTO promo ( "name", "id" ) VALUES ( 'César', 393 );`
 
-`UPDATE promo SET name = 'Cleo' WHERE id = 5;`
+`UPDATE "promo" SET "name" = 'Cleo' WHERE "id" = 5;`
 
-`DELETE FROM promo WHERE id = 123;`
+Il faudra supprimer d'abord les étudiants de la promo en question
+
+`DELETE FROM "promo" WHERE "id" = 123;`
