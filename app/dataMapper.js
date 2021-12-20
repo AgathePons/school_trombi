@@ -21,6 +21,10 @@ const dataMapper = {
   getStudentsByPromoId: async (id) => {
     const queryStudents = `SELECT * FROM "student" WHERE "promo_id"=${id}`;
     return (await client.query(queryStudents)).rows;
+  },
+  addStudent: async (firstName, LastName, githubUsername, promoID) => {
+    const queryAddStudent = `INSERT INTO student ( "first_name", "last_name", "github_username", "promo_id" ) VALUES ( '${firstName}', '${LastName}', '${githubUsername}', ${promoID} );`;
+    return (await client.query(queryAddStudent));
   }
 };
 
