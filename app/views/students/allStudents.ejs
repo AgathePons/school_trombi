@@ -1,0 +1,12 @@
+<%- include('../partials/header') %>
+<h1>Liste de tous les étudiants </h1>
+<ul class="cards">
+  <% for (const student of students) { %>
+  <li class="card">
+    <a href="/students/<%= student.id %>">
+      <p><%= student.first_name %> <%= student.last_name %></p>
+    </a>
+  </li>
+  <% } %>
+</ul>
+<%- include('../partials/footer') %>

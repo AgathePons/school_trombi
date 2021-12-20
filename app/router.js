@@ -14,6 +14,8 @@ router.get('/promos/:id', promoController.details);
 
 router.get('/promos/:id/students', studentsController.list);
 
+router.get('/students', studentsController.allList);
+
 router.get('/students/:id', studentsController.details);
 
 module.exports = router;

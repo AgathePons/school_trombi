@@ -1,16 +1,24 @@
-const client = require('../dbClient');
+const dataMapper = require('../dataMapper');
 
 module.exports = {
+  allList: async (req, res, next) => {
+    try {
+      const students = await dataMapper.getStudents();
+      res.render('students/allStudents', {
+        students
+      });
+    } catch (error) {
+      console.error('hmm, an error occured:', error);
+    }
+  },
   list: async (req, res, next) => {
     const id = req.params.id;
-    const queryPromo = `SELECT * FROM "promo" WHERE "id"=${id}`;
-    const queryStudents = `SELECT * FROM "student" WHERE "promo_id"=${id}`;
     try {
       //const resultatPromo = await client.query(queryPromo);
-      const promo = (await client.query(queryPromo)).rows[0];
-      console.log(promo);
+      const promo = await dataMapper.getPromoById(id);
+      //console.log(promo);
       if (promo) {
-        const students = (await client.query(queryStudents)).rows;
+        const students = await dataMapper.getStudentsByPromoId(id);
         res.render('students/list', {
           promo,
           students
@@ -25,14 +33,10 @@ module.exports = {
   },
   details: async (req, res, next) => {
     const id = req.params.id;
-    const queryStudent = `SELECT * FROM "student" WHERE "id"=${id}`;
-    
     try {
-      const resultat = await client.query(queryStudent);
-      const student = resultat.rows[0];
+      const student = await dataMapper.getStudentById(id);
       if (student) {
-        const queryPromo = `SELECT "name" FROM "promo" WHERE "id"=${student.promo_id}`;
-        const promo = (await client.query(queryPromo)).rows[0];
+        const promo = await dataMapper.getPromoById(student.promo_id);
         res.render('students/details', {
           student,
           promo

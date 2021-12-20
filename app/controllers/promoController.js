@@ -1,12 +1,11 @@
-const client = require('../dbClient');
+const dataMapper = require('../dataMapper');
 
 module.exports = {
   list: async (req, res) => {
-    const query = 'SELECT * FROM "promo";';
     try {
-      const resultats = await client.query(query);
+      const promos = await dataMapper.getPromos();
       res.render('promos/list', {
-        promos: resultats.rows
+        promos
       });
     } catch (error) {
       console.error('hmm, an error occured:', error);
@@ -14,10 +13,8 @@ module.exports = {
   },
   details: async (req, res, next) => {
     const id = req.params.id;
-    const query = `SELECT * FROM "promo" WHERE "id"=${id}`;
     try {
-      const resultat = await client.query(query);
-      const promo = resultat.rows[0];
+      const promo = await dataMapper.getPromoById(id);
       if (promo) {
         res.render('promos/details', {
           promo
