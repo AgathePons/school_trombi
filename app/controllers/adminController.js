@@ -2,13 +2,19 @@ const dataMapper = require('../dataMapper');
 
 module.exports = {
   addStudentPage: async (req, res, next) => {
-    try {
-      const promos = await dataMapper.getPromos();
-      res.render('admin/add_student', {
-        promos
-      });
-    } catch (error) {
-      console.error('hmm, an error occured:', error);
+    if(req.session && req.session.login === 'Nicole') { // if it's Nicole
+      try {
+        const promos = await dataMapper.getPromos();
+        res.render('admin/add_student', {
+          promos
+        });
+      } catch(error) {
+        console.error('hmm, an error occured:', error);
+      }
+    } else if(req.session.login != null) { // if there is a login in session (user is logged)
+      res.send(req.session.login + ' you\'re not an admin!');
+    } else { // else, user not logged, redirect on login page
+      res.redirect('/login');
     }
   },
   addStudent: async (req, res, next) => {

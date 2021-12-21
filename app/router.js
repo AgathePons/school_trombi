@@ -3,6 +3,7 @@ const mainControllers = require('./controllers/mainControllers');
 const promoController = require('./controllers/promoController');
 const studentsController = require('./controllers/studentsController');
 const adminController = require('./controllers/adminController');
+const authController = require('./controllers/authController');
 
 const router = express.Router();
 
@@ -18,6 +19,9 @@ router.get('/students/:id', studentsController.details);
 
 router.get('/admin/addStudent', adminController.addStudentPage);
 router.post('/admin/addStudent', adminController.addStudent);
+
+router.get('/login', authController.showLogin);
+router.post('/login', authController.postLogin);
 
 
 

@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const session = require('express-session');
 const router = require('./app/router');
 
 const app = express();
@@ -7,6 +8,13 @@ const PORT = process.env.PORT || 5050;
 
 app.set('views', './app/views');
 app.set('view engine', 'ejs');
+
+app.use(session({
+  // secret: generate the tokens
+  secret: 'DearPrincessCelesti@YourF4ithfullyStud3ntTwilightSparkle',
+  // session auto save at the end of the request
+  resave: true,
+}));
 
 app.use(express.static('./public'));
 
