@@ -13,20 +13,14 @@ module.exports = {
   },
   addStudent: async (req, res, next) => {
     console.log('take my body:',req.body);
-    const firstName = req.body.first_name;
-    const lastName = req.body.last_name;
-    const githubUsername = req.body.github_username;
-    const promoID = req.body.promo;
+    const promo = req.body.promo;
     try {
-      await dataMapper.addStudent(firstName, lastName, githubUsername, promoID);
-      const promo = await dataMapper.getPromoById(promoID); 
-      if(promo) {
-        res.render('promos/details', {
-          promo
-        });
+      const result = await dataMapper.addStudent(req.body);
+      if(result) {
+        res.redirect(`/promos/${promo}/students`);
       } else {
-        console.log('raté 404');
-        next();
+        console.log('raté 500');
+        return res.status(500).send('Huum, aucun enregistrement créé...');
       }
     } catch (error) {
       console.error('OOOOOPSIII', error);
