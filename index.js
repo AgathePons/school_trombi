@@ -10,10 +10,17 @@ app.set('views', './app/views');
 app.set('view engine', 'ejs');
 
 app.use(session({
+  // doc express-session : npmjs.com/package/express-session
   // secret: generate the tokens
   secret: 'DearPrincessCelesti@YourF4ithfullyStud3ntTwilightSparkle',
   // session auto save at the end of the request
   resave: true,
+  // even if empty, save the session
+  saveUninitialized: true,
+  cookie : {
+    // define option for cookies, for example lifetime
+    // we can leave empty to keep default settings
+  }
 }));
 
 app.use(express.static('./public'));

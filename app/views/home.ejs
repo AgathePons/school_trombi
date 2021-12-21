@@ -1,5 +1,10 @@
 <%- include('partials/header') %>
 <h2>Bienvenue sur le trombinoscope de l'école O'clock</h2>
+<% if(loginUser) { %>
+<h3>You are logged as <%= loginUser %></h3>
+<% } else { %>
+<h3>You are not logged</h3>
+<% } %>
 <a href="/promos">Voir la liste de promos</a>
 <a href="/admin/addStudent">Ajouter un étudiant</a>
 <%- include('partials/footer') %>
