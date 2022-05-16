@@ -28,6 +28,13 @@ Seeder la base de données :
 psql -U <user> -d <nomdelabase> -f data/create_db.sql
 ```
 
+Créer le fichier `.env`
+
+```cmd
+PORT=5000
+PGURL="postgresql://user:mdp@localhost:5432/db"
+```
+
 Start le serveur :
 
 ```cmd
