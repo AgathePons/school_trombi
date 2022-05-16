@@ -1,4 +1,4 @@
-## Sprints
+# Sprints
 
 |#|Nom|Timing|
 |-|---|------|
