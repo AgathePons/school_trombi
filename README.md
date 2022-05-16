@@ -22,6 +22,12 @@ Créer la base de données (en super user) :
 create db <nomdelabase>
 ```
 
+Seeder la base de données :
+
+```cmd
+psql -U <user> -d <nomdelabase> -f data/create_db.sql
+```
+
 Start le serveur :
 
 ```cmd
