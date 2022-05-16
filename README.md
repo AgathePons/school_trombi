@@ -19,7 +19,7 @@ npm i
 Créer la base de données (en super user) :
 
 ```cmd
-create db <nomdelabase>
+createdb <nomdelabase>
 ```
 
 Seeder la base de données :
